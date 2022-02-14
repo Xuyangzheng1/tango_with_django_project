@@ -1,10 +1,14 @@
+from multiprocessing import context
 from django.shortcuts import render
+
 from django.http import HttpResponse
-from . import views
-# Create your views here.
-
-
+context_dict = {'boldmessage': 'Crunchy, creamy, cookie, candy, cupcake!'}  
+context_dict1 = {'boldmessage1': 'This tutorial has been put together by <Xuyang zheng>'}    
 def index(request):
-    return HttpResponse('Rango says hey there partner!<a href="/rango/about/">About</a>')
+    context_dict = {'boldmessage' : 'Crunchy, creamy, cookie, candy, cupcake!'}
+    return render(request, 'rango/index.html', context=context_dict)
+    
 def about(request):
-    return HttpResponse('Rango says here is the about page.<a href="/rango/">Index</a>')
+    return render(request, 'rango/about.html')
+    #return HttpResponse("Rango says here is the about page.<a href='/rango/'>Index</a>")
+ 
