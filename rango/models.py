@@ -18,7 +18,7 @@ class Category(models.Model):
         verbose_name_plural = 'Categories'
 
     def __str__(self):
-        return self.name
+        return str(self.name)
 
 
 class Page(models.Model):
@@ -29,4 +29,6 @@ class Page(models.Model):
 
 
     def __str__(self) -> str:
-        return self.title
+        return str(self.title)
+
+   

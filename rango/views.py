@@ -11,8 +11,8 @@ from rango.forms import PageForm
 
 def index(request):
     
-    category_list = Category.objects.order_by('-likes')[:5]
-    page_list = Page.objects.order_by('-views')[:5]
+    category_list = Category.objects.order_by('-likes')[:90]
+    page_list = Page.objects.order_by('-views')[:90]
 
 
     context_dict = {}
@@ -25,7 +25,7 @@ def index(request):
     return render(request, 'rango/index.html', context=context_dict)
 #about index!!!!
 def about(request: HttpRequest):
-    return render(request, 'rango/about.html')
+    return render(request, 'rango/about.html', {})
 
 def show_category(request: HttpRequest, category_name_slug):
 
@@ -64,8 +64,9 @@ def add_category(request):
         form = CategoryForm(request.POST)
         # Have we been provided with a valid form?
         if form.is_valid():
+            form.save(commit=True)
 # Save the new category to the database. 
-            cat = form.save(commit=True)
+            #cat = form.save(commit=True)
 # Now that the category is saved, we could confirm this. # For now, just redirect the user back to the index view. 
             return redirect('/rango/')
         else:
